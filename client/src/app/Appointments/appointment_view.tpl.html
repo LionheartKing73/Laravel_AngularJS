@@ -1,0 +1,60 @@
+<div class="appointment-block pad-63">
+    <div class="container">
+        <div class="page-head clearfix">  
+            <h1 class="pull-left">{{'The appointment is scheduled for' | translate }} {{appointment.appointment_date | dateFormat}} {{appointment.appointment_time}}</h1>
+        	<a href="#/appointments/all" class="btn btn-red pull-right"><i class="fa fa-chevron-left"></i>Back</a>
+        </div>
+        <form class="form-horizontal appmt-view">
+            <div class="form-group" ng-if="$root.auth.role_id == model.ConstUserType.User">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Doctor' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10 name">{{appointmentUser.user_profile.dr_title}} {{appointmentUser.user_profile.first_name}} {{appointmentUser.user_profile.last_name}}</span>
+            </div>
+            <div class="form-group" ng-if="$root.auth.role_id == model.ConstUserType.Doctor">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Patient Name' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10 name">{{appointmentUser.user_profile.first_name}} {{appointmentUser.user_profile.last_name}}</span>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Gender' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10">{{appointmentUser.user_profile.gender.name}}</span>
+            </div>
+            <div class="form-group" ng-if="$root.auth.role_id == model.ConstUserType.User">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Where' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10">{{appointmentUser.user_profile.address}} {{appointmentUser.user_profile.city.name}}, {{appointmentUser.user_profile.country.name}}, {{appointmentUser.user_profile.postal_code}}</span>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Patient Note' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10" ng-if="appointment.patient_note">{{appointment.patient_note}}</span>
+                <span class="col-xs-8 col-sm-9 col-md-10" ng-if="!appointment.patient_note">--</span>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Doctor Note' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10" ng-if="appointment.doctor_note">{{appointment.doctor_note}}</span>
+                <span class="col-xs-8 col-sm-9 col-md-10" ng-if="!appointment.doctor_note">--</span>
+            </div>
+            <div class="form-group" ng-if="$root.auth.role_id == model.ConstUserType.Doctor">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Patient Status' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10" ng-if="appointment.is_seen_before == 1"> Already Seen </span>
+                <span class="col-xs-8 col-sm-9 col-md-10" ng-if="appointment.is_seen_before == 0"> New Patient </span>
+            </div>
+            <div class="form-group" ng-if="$root.auth.role_id == model.ConstUserType.Doctor">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Reason for visit' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10">{{appointment.specialty_diseas.name}}</span>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 col-sm-3 col-md-2">{{'Appointment Status' | translate }}</label>
+                <span class="col-xs-8 col-sm-9 col-md-10 label label-warning">{{appointment.appointment_status.name}}</span>
+            </div>
+            <div class="form-group" ng-if="$root.auth.role_id == model.ConstUserType.Doctor">
+                <p ng-if="appointment.appointment_status_id == model.ConstAppointmentStatus.PendingApproval && appointmentDateTime >= todayDateTime"> <button ng-click="changeappointstatus('confirm')" class="btn btn-green btn-animate"> {{'Confirm Appointment' | translate }} </button> </p>
+                <p ng-if="appointment.appointment_status_id == model.ConstAppointmentStatus.PendingApproval && appointmentDateTime >= todayDateTime"><button ng-click="changeappointstatus('decline')" class="btn btn-danger btn-animate"> {{'Decline Appointment' | translate }} </button> </p>
+            </div>
+            <div class="form-group appmt-view-btn" ng-if="$root.auth.role_id == model.ConstUserType.User">
+                <p ng-if="appointmentDateTime >= todayDateTime &&  appointment.appointment_status_id != model.ConstAppointmentStatus.Cancelled"> 
+                    <button ng-click="changeappointstatus('cancel')" class="btn btn-danger btn-animate"> 
+                        {{'Cancel Appointment' | translate }} 
+                    </button> 
+                </p>
+            </div>
+        </form>
+    </div>
+</div>

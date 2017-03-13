@@ -1,0 +1,367 @@
+<div class='home-wrapper'>
+      <div class='home-banner'>
+            <div class='container'>
+                  <h1>Find a Great Dentist. <br>For Free.</h1>
+                  <div class='search-banner col-md-8 col-md-offset-2'>
+                        <div class='form-group'>
+                              <div class='input-group'>
+                                    <div class='input-group-addon'>
+                                           <ui-select ng-model='selected.value' theme='bootstrap' search-enabled='false'>
+                                               <ui-select-match placeholder='Location'>
+                                                      <span ng-bind='$select.selected.name'></span>
+                                                     </ui-select-match>
+                                                <ui-select-choices repeat='item in (itemArray | filter: $select.search) track by item.id'>
+                                                      <span ng-bind='item.name'></span>
+                                                    </ui-select-choices>
+                                              </ui-select>
+                                        </div>
+                                    <input type='text' class='form-control' id='exampleInputAmount'>
+                                    <div class='input-group-addon'><button class='btn btn-search'></button></div>
+                                  </div>
+                            </div>
+                      </div>
+                  <a href='#' class='btn btn-success btn-border'>FIND DENTAL CLINIC NEAR ME NOW</a>
+                </div>
+            <div class='mouse-bottom'>
+                LEARN MORE
+                  <img src='assets/img/mouse-icon.png' alt='' class='mouse-icon'/>
+            </div>
+          </div>
+      <div class='section-2 how-it-work'>
+            <div class='container'>
+                  <h2>Find a Great Dentist. For Free.</h2>
+                  <span class='col-md-6 col-md-offset-3 text-align-center'>Click on the icons to launch a search based on procedures. Du texte lisible et contenant du sens est source de distractions</span>
+                  <div class='row'>
+                          <div class='col-md-4 section-2-item'>
+                                <div class='col-md-8'>
+                                        <img src='assets/img/section-2-img-1.png' alt=''>
+                                       <h4>SEARCH</h4>
+                                      <p>Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                              </div>
+                         <div class='col-md-4 section-2-item'>
+                               <div class='col-md-8 col-md-offset-2'>
+                                        <img src='assets/img/section-2-img-2.png' alt=''>
+                                       <h4>COMPARE AND SELECT</h4>
+                                      <p>Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                              </div>
+                          <div class='col-md-4 section-2-item'>
+                               <div class='col-md-8 col-md-offset-4'>
+                                        <img src='assets/img/section-2-img-3.png' alt=''>
+                                       <h4>Book Appointment</h4>
+                                      <p>Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                              </div>
+                      </div>
+                </div>
+          </div>
+      <div class='section-3 procedures'>
+             <div class='container'>
+                    <h2>Find a Great Dentist. For Free.</h2>
+                    <p  class='col-md-6 col-md-offset-3 text-align-center'>Click on the icons to launch a search based on procedures. Du texte lisible et contenant du sens est source de distractions</p>
+                    <slick class='procedures-carusel col-xs-12' infinite=true slides-to-show=6 slides-to-scroll=1 responsive='[{breakpoint: 900,settings: {slidesToShow: 3}},{breakpoint: 600,settings: {slidesToShow: 2,arrows: false}}]'>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-1.png' alt='' />
+                                                <p>WHITENING</p>
+                                          </div>
+                                      <div class='procedures-item'>
+                                          <img src='assets/img/carusel/procedures-item-2.png' alt='' />
+                                              <p>braces</p>
+                                          </div>
+                                  </div>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-3.png' alt='' />
+                                              <p>Crowning</p>
+                                          </div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-4.png' alt='' />
+                                              <p>Cleaning</p>
+                                          </div>
+                                  </div>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-5.png' alt='' />
+                                              <p>Implants</p>
+                                          </div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-6.png' alt='' />
+                                              <p>GUM SURGERY</p>
+                                          </div>
+                                  </div>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-7.png' alt='' />
+                                              <p>Fillings</p>
+                                          </div>
+                                     <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-8.png' alt='' />
+                                              <p>Veneers</p>
+                                          </div>
+                                  </div>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-9.png' alt='' />
+                                              <p>Extraction</p>
+                                          </div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-10.png' alt='' />
+                                              <p>Dentures</p>
+                                          </div>
+                                  </div>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-11.png' alt='' />
+                                              <p>Root canal</p>
+                                          </div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-12.png' alt='' />
+                                              <p>Oral Cancer <br>Examination</p>
+                                          </div>
+                                  </div>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-9.png' alt='' />
+                                              <p>WHITENING</p>
+                                          </div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-11.png' alt='' />
+                                              <p>braces</p>
+                                          </div>
+                                  </div>
+                              <div>
+                                      <div class='procedures-item'>
+                                              <img src='assets/img/carusel/procedures-item-12.png' alt='' />
+                                              <p>WHITENING</p>
+                                          </div>
+                                      <div class='procedures-item'>"
+                                              <img src='assets/img/carusel/procedures-item-10.png' alt='' />
+                                              <p>braces</p>
+                                          </div>
+                                  </div>
+                        </slick>
+                 </div>
+            <div class='mouse-bottom'>
+                  <img src='assets/img/mouse-icon.png' alt='' class='mouse-icon'/>
+               </div>
+          </div>
+      <div class='section-4 google-map'>
+                    <div class="map-block">
+                            <div class='search-bar'>
+                                  <p>Clinics that offers emergency procedures</p>
+                                  <p>Regular clinics</p>
+                                </div>
+                            <div map-lazy-load=\"https://maps.google.com/maps/api/js?key=AIzaSyAR1VR0cEgs-YuJOQzwVLNfPmwdAu2xBHE\">
+                                    <ng-map zoom="10" center="[33.862100, -84.687900]" class="map-height" scrollwheel='false' pan-control="true\"
+                                      pan-control-options="{position:'TOP_RIGHT'}"+
+                                      map-type-control="false"+
+                                      zoom-control="true"+
+                                     zoom-control-options="{style:'SMALL', position:'LEFT_CENTER'}
+                                     scale-control="false"
+                                     street-view-control="true"
+                                     street-view-control-options="{position:'LEFT_CENTER'}">
+                                        <marker id='1' position="33.862100, -84.687900" on-click="map.showInfoWindow(event, 'doctor-info')" icon="assets/img/hospital-marker-blue.png"></marker>
+                                        <marker id='2' position="33.92100, -84.97900" on-click="map.showInfoWindow(event, 'doctor-info')" icon="assets/img/hospital-marker-red.png"></marker>
+                                        <info-window id="doctor-info">
+                                                <div ng-non-bindable="">
+                                                        <div class="dr-avatar"> <img class="img-responsive" ng-src="assets/img/dentist.jpg"/> </div>
+                                                        <div class="dr-heading">
+                                                            	<h4>Dr John Smith</h4>
+                                                                    <div class="address1">3867 Sherman Street Troy Kansas, 66087</div>
+                                                                    <div class="phone">785-985-7297</div>
+                                                                      <a href="#/doctor/{{doctorInfo.username}}" class="">View Profile</a>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                    </info-window>
+                                    </ng-map>
+                            </div>
+                   <div class="container container-absolute">
+                          <div class='col-md-8 col-md-offset-2 col-sm-12'>
+                                  <h2>Lookup on over <span>70, 000</span> clinic listings</h2>
+                                  <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions</p>
+                                  <div>
+                                          <div class='col-md-5'>
+                                              <div class='search-banner subscribe-wrapper'>
+                                                      <ui-select class='map-select' ng-model='selected.value' theme='bootstrap' search-enabled='false'>
+                                                              <ui-select-match placeholder='Filter by Procedures Offered'>
+                                                                      <span ng-bind='$select.selected.name'></span>
+                                                                  </ui-select-match>
+                                                               <ui-select-choices repeat='item in (itemArray | filter: $select.search) track by item.id'>
+                                                                      <span ng-bind='item.name'></span>
+                                                                  </ui-select-choices>
+                                                          </ui-select>
+                                                 </div>
+                                              </div>
+                                          <div class='col-md-7'>
+                                                  <div class='search-banner subscribe-wrapper'>
+                                                           <div class='form-group'>
+                                                                   <div class='input-group'>
+                                                                           <input type='text' class='form-control' id='subscribe' placeholder='Type City/State or Zipcode to change location'>
+                                                                           <div class='input-group-addon'><button class='btn btn-search'></button></div>
+                                                                       </div>
+                                                              </div>
+                                                       </div>
+                                              </div>
+                                      </div>
+                             </div>
+                  </div>
+      </div>
+  <div class='section-5 patient-donwload'>
+          <div class='container'>
+                <div class='row'>
+                      <div class='col-md-6'>
+                              <h2>We made it easy and convenient <br>for you.</h2>
+                                <div class='col-xs-12 section-5-item'>
+                                        <img src='assets/img/section-5-img-1.png' alt=''>
+                                        <span>See Clinics That Offers Emergency Procedures</span>
+                                        <p>We know how important Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                                <div class='col-xs-12 section-5-item'>
+                                        <img src='assets/img/section-5-img-2.png' alt=''>
+                                        <span>Avoid Missed Appointments, Get Reminders!</span>
+                                        <p>Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                                <div class='col-xs-12 section-5-item'>
+                                        <img src='assets/img/section-5-img-3.png' alt=''>
+                                        <span>Your in good hands</span>
+                                        <p>We guaranty, only registered Dentists rem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                              <div class="btn-bottom-wrapper">
+                                    <a href='#' class='btn btn-primary'>register now</a>
+                                    <a href='#' class='btn btn-link'>get the FREE app</a>
+                                  </div>
+                          </div>
+                      <div class='col-md-6'><img src='assets/img/section-5-female.png' alt=''></div>
+                    </div>
+              </div>
+      </div>
+  <div class='section-6 partners'>
+          <div class='container'>
+                <h2>What Clients Say</h2>
+                <p  class='col-md-6 col-md-offset-3 text-align-center'>Click on the icons to launch a search based on procedures. Du texte lisible et contenant du sens est source de distractions</p>
+               <slick class='main-partners col-xs-12' dots='true' infinite=true slides-to-show=2 slides-to-scroll=1 responsive='[{breakpoint: 900,settings: {slidesToShow: 2}},{breakpoint: 600,settings: {slidesToShow: 1,arrows: false}}]'>
+                      <div>
+                              <div class='main-comment'>
+                                  <div class='comment-wrapper'>
+                                        <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte.</p>
+                                          <span>Ron Navalta <span>NY, USA</span></span>
+                                      </div>
+                                  <span class='img-circle-wrapper'><img  src='assets/img/man-1.png' alt=''></span>
+                                  </div>
+                          </div>
+                      <div>
+                              <div class='main-comment'>
+                                 <div class='comment-wrapper'>
+                                        <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte.</p>
+                                          <span>Ron Navalta <span>NY, USA</span></span>
+                                      </div>
+                                  <span class='img-circle-wrapper'><img  src='assets/img/man-1.png' alt=''></span>
+                                  </div>
+                         </div>
+                      <div>
+                              <div class='main-comment'>
+                                  <div class='comment-wrapper'>
+                                        <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte.</p>
+                                          <span>Ron Navalta <span>NY, USA</span></span>
+                                      </div>
+                                  <span class='img-circle-wrapper'><img  src='assets/img/man-1.png' alt=''></span>
+                                  </div>
+                          </div>
+                    </slick>
+               <h2>Our partners</h2>
+                <slick class='our-partners col-xs-12' infinite=true slides-to-show=4 slides-to-scroll=1 responsive='[{breakpoint: 900,settings: {slidesToShow: 5}},{breakpoint: 600,settings: {slidesToShow: 1,arrows: false}}]'>
+                      <div><img  src='assets/img/our-partners-img-1.png' alt=''></div>
+                      <div><img  src='assets/img/our-partners-img-2.png' alt=''></div>
+                      <div><img  src='assets/img/our-partners-img-3.png' alt=''></div>
+                      <div><img  src='assets/img/our-partners-img-4.png' alt=''></div>
+                      <div><img  src='assets/img/our-partners-img-2.png' alt=''></div>
+                      <div><img  src='assets/img/our-partners-img-4.png' alt=''></div>
+                    </slick>
+              </div>
+      </div>
+  <div class='section-7 testimonials'>
+        <div class='container'>
+              <div class='row'>
+                    <div class='col-md-6'><img src='assets/img/phone-section-7.png' alt='' class='section-7-img' /></div>
+                    <div class='col-md-6'>
+                                <span>You have a clinic? You’re a dentist?</span>
+                                <h2>GET LISTED. ATTRACT MORE PATIENTS. <br>Absolutely FREE!</h2>
+                                <div class='col-xs-12 section-5-item'>
+                                       <img src='assets/img/section-7-img-1.png' alt=''>
+                                        <span>Avoid Missed Appointments, Get Reminders!</span>
+                                        <p>Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                                <div class='col-xs-12 section-5-item'>
+                                        <img src='assets/img/section-7-img-2.png' alt=''>
+                                        <span>Avoid Missed Appointments, Get Reminders!</span>
+                                        <p>Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                                <div class='col-xs-12 section-5-item'>
+                                        <img src='assets/img/section-7-img-3.png' alt=''>
+                                        <span>Avoid Missed Appointments, Get Reminders!</span>
+                                        <p>Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a</p>
+                                    </div>
+                              <div class="btn-bottom-wrapper">
+                                    <a href='#' class='btn btn-whites'>LIST YOUR CLINIC</a>
+                                    <a href='#' class='btn btn-link'>LEARN MORE</a>
+                                  </div>
+                        </div>
+                  </div>
+            </div>
+        <div class='mouse-bottom'>
+              <img src='assets/img/mouse-icon.png' alt='' class='mouse-icon'/>
+            </div>
+      </div>
+  <div class='section-8 blog'>
+        <div class='container'>
+              <h2>MyDentist News / Blog</h2>
+              <p class='col-md-6 col-md-offset-3 text-align-center'>Click on the icons to launch a search based on procedures. Du texte lisible et contenant du sens est source de distractions</p>
+              <div class='row news-wrapper'>
+                    <div class='col-md-4'>
+                          <div class='col-md-12 news-item'>
+                                <img src='assets/img/default-news.png' alt='' class='news-img' />
+                                <span>January 28, 2017</span>
+                                <h4>Article Title Goes Here</h4>
+                                <p>On sait depuis longtemps que trava iller avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même</p>
+                                 <a href='#'>READ MORE</a>
+                               </div>
+                        </div>
+                  <div class='col-md-4'>
+                          <div class='col-md-12 news-item'>
+                                <img src='assets/img/default-news.png' alt='' class='news-img' />
+                                <span>January 28, 2017</span>
+                                <h4>Article Title Goes Here</h4>
+                                <p>On sait depuis longtemps que trava iller avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même</p>
+                                 <a href='#'>READ MORE</a>
+                              </div>
+                       </div>
+                    <div class='col-md-4'>
+                          <div class='col-md-12 news-item'>
+                                <img src='assets/img/default-news.png' alt='' class='news-img' />
+                                <span>January 28, 2017</span>
+                                <h4>Article Title Goes Here</h4>
+                                <p>On sait depuis longtemps que trava iller avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même</p>
+                                 <a href='#'>READ MORE</a>
+                               </div>
+                        </div>
+                 </div>
+            </div>
+      </div>
+    <div class='section-9 news-letter'>
+          <div class='container'>
+                <h2>Subscribe To OUR Newsletter</h2>
+                <p class='col-md-8 col-md-offset-2 text-align-center'>Click on the icons to launch a search based on procedures. Du texte lisible et contenant du sens est source de distractions</p>
+              <div class='search-banner subscribe-wrapper col-md-8 col-md-offset-2'>
+                    <div class='form-group'>
+                          <div class='input-group'>
+                                <input type='text' class='form-control' id='subscribe' placeholder='Email Address'>
+                              <div class='input-group-addon'><button class='btn btn-subscribe'>Subscribe</button></div>
+                              </div>
+                        </div>
+                  </div>
+              </div>
+        </div>
+</div>

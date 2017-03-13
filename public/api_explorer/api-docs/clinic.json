@@ -1,0 +1,246 @@
+{
+  "apis": [
+    {
+      "path": "/clinic/save",
+      "operations": [
+        {
+          "summary": "Clinic save",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "ClinicSave",
+              "paramType": "body",
+              "required": true,
+              "type": "ClinicSave",
+              "format": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "POST",
+          "nickname": "clinic_save"
+        }
+      ]
+    },
+    {
+      "path": "/clinic/procedure/fetch",
+      "operations": [
+        {
+          "summary": "To fetch clinic procedures",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "clinic_procedure_fetch"
+        }
+      ]
+    },
+    {
+      "path": "/clinic/fetch",
+      "operations": [
+        {
+          "summary": "To fetch clinics",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "clinics_fetch"
+        }
+      ]
+    },
+    {
+      "path": "/clinic/procedure/save",
+      "operations": [
+        {
+          "summary": "Save role",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Procedures",
+              "paramType": "body",
+              "required": true,
+              "type": "Procedures",
+              "format": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "POST",
+          "nickname": "clinic_procedure_save"
+        }
+      ]
+    },
+    {
+      "path": "/clinic/roles",
+      "operations": [
+        {
+          "summary": "Clinic roles",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "fetch_user_processes"
+        }
+      ]
+    }
+  ],
+  "models":{
+    "ClinicSave":{
+      "properties":{
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "Clinic name"
+        },
+        "webAddress":{
+          "type": "string",
+          "required": true,
+          "description": "Clinic web address"
+        },
+        "address1":{
+          "type": "integer",
+          "required": true,
+          "description": "Clinic address1"
+        },
+        "address2": {
+          "type": "string",
+          "required": true,
+          "description": "Clinic address2"
+        },
+        "perfecture":{
+          "type": "string",
+          "required": true,
+          "description": "Clinic perfecture"
+        },
+        "postalCode":{
+          "type": "integer",
+          "required": true,
+          "description": "Clinic postal code"
+        },
+        "contactName": {
+          "type": "string",
+          "required": true,
+          "description": "Clinic contact name"
+        },
+        "contactPhone":{
+          "type": "string",
+          "required": true,
+          "description": "Clinic contact phone"
+        },
+        "latitude":{
+          "type": "integer",
+          "required": true,
+          "description": "Clinic latitude"
+        },
+        "longitude":{
+          "type": "number",
+          "required": true,
+          "description": "Clinic longitude"
+        },
+        "cityId":{
+          "type": "number",
+          "required": true,
+          "description": "Clinic city id"
+        }
+      }
+    },
+    "Procedures":{
+      "properties":{
+        "procedures": {
+          "type": "object",
+          "required": true,
+          "description": "Array of procedure ids like [1,2,2,3,4]"
+        }
+      }
+    }
+  },
+  "swaggerVersion": "1.2",
+  "apiVersion": "1",
+  "basePath": "/public/api"
+}

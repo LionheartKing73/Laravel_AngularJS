@@ -1,0 +1,92 @@
+<aside id="left-panel">
+
+    <!-- User info -->
+    <div login-info></div>
+    <!-- end user info -->
+
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+
+        <ul data-smart-menu>
+            <li data-menu-collapse>
+                <a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span
+                        class="menu-item-parent">{{getWord('Dashboard')}}</span></a>
+                <ul>
+                    <li data-ui-sref-active="active">
+                        <a data-ui-sref="app.dashboard">Intelligence</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li data-menu-collapse>
+                <a href="#"><i class="fa fa-lg fa-fw fa-cube"></i> <span class="menu-item-parent">Appointments</span></a>
+                <ul>
+                    <li data-ui-sref-active="active">
+                        <a data-ui-sref="app.appointments.manageappointments"><i class="fa fa-gear"></i>
+                            Manage Appointments</a>
+                    </li>
+                    <li data-ui-sref-active="active">
+                        <a data-ui-sref="app.appointments.calendar"><i class="fa fa-picture-o"></i>
+                            Calendar</a>
+                    </li>
+                    <!--<li data-ui-sref-active="active">
+                        <a data-ui-sref="app.smartAdmin.appLayout"><i class="fa fa-cube"></i> {{getWord('App Settings')}}</a>
+                    </li>-->
+                </ul>
+            </li>
+
+            <li data-menu-collapse>
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Settings</span></a>
+                <ul>
+                    <li data-ui-sref-active="active">
+                        <a data-ui-sref="app.settings.clinicProfile">Clinic Profile</a>
+                    </li>
+                    <li data-ui-sref-active="active" data-menu-collapse>
+                        <a data-ui-sref="app.settings.doctors">Doctors</a>
+                        <ul>
+                            <li data-ui-sref-active="active">
+                                <a data-ui-sref="app.settings.doctors.new">New</a>
+                            </li>
+                            <li data-ui-sref-active="active">
+                                <a data-ui-sref="app.settings.doctors.appointment">Appointment Settings</a>
+                            </li>
+                            <li data-ui-sref-active="active">
+                                <a data-ui-sref="app.settings.procedures">Procedures</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-ui-sref-active="active">
+                        <a data-ui-sref="app.settings.users">Users</a>
+                    </li>
+                    <li data-menu-collapse>
+                        <a href="#">Roles and Rights</a>
+                        <ul>
+                            <li data-ui-sref-active="active">
+                                <a data-ui-sref="app.settings.newRole">New</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            
+            <li data-ui-sref-active="active">
+                <a data-ui-sref="login" title="Widgets"><i class="fa fa-lg fa-fw fa-list-alt"></i><span
+                        class="menu-item-parent">Logout</span></a>
+            </li>
+
+
+        </ul>
+
+        <!-- NOTE: This allows you to pull menu items from server -->
+        <!-- <ul data-smart-menu-items="/api/menu-items.json"></ul> -->
+    </nav>
+
+  <span class="minifyme" data-action="minifyMenu" minify-menu>
+    <i class="fa fa-arrow-circle-left hit"></i>
+  </span>
+
+</aside>

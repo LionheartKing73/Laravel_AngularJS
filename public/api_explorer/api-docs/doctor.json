@@ -1,0 +1,131 @@
+{
+  "apis": [
+    {
+      "path": "/doctor/save",
+      "operations": [
+        {
+          "summary": "Doctor save",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Doctor",
+              "paramType": "body",
+              "required": true,
+              "type": "Doctor",
+              "format": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "POST",
+          "nickname": "doctor_save"
+        }
+      ]
+    },{
+      "path": "/doctor/procedures/fetch",
+      "operations": [
+        {
+          "summary": "To fetch the procedures",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "clinic_procedure_fetch"
+        }
+      ]
+    }
+  ],
+  "models":{
+    "Doctor":{
+      "properties":{
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "Doctor name"
+        },
+        "gender":{
+          "type": "integer",
+          "required": true,
+          "description": "Doctor gender"
+        },
+        "email":{
+          "type": "string",
+          "required": true,
+          "description": "Doctor email"
+        },
+        "phone": {
+          "type": "string",
+          "required": true,
+          "description": "Doctor phone"
+        },
+        "professionalStatement":{
+          "type": "string",
+          "required": true,
+          "description": "Doctor email address"
+        },
+        "affliations":{
+          "type": "object",
+          "required": true,
+          "description": "Doctor affliations"
+        },
+        "awards": {
+          "type": "object",
+          "required": true,
+          "description": "Doctor awards"
+        },
+        "language":{
+          "type": "object",
+          "required": true,
+          "description": "Doctor languages"
+        },
+        "procedures":{
+          "type": "object",
+          "required": true,
+          "description": "Doctor procedures"
+        },
+        "educations":{
+          "type": "object",
+          "required": true,
+          "description": "Doctor educations"
+        }
+      }
+    }
+  },
+  "swaggerVersion": "1.2",
+  "apiVersion": "1",
+  "basePath": "/public/api"
+}

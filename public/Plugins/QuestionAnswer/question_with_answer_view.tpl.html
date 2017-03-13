@@ -1,0 +1,28 @@
+<section class="clearfix pad-63">
+	<div class="container">
+        <div class="page-head clearfix">   
+            <h1 class="pull-left">Question with Answers</h1>
+            <span ng-if="$root.auth.role_id == userRole.User" class="pull-right"> 
+                <a href="#/questions" class="btn btn-red"><i class="fa fa-chevron-left"></i>Back</a>
+            </span>
+            <span ng-if="$root.auth.role_id == userRole.Doctor" class="pull-right"> 
+                <a href="#/answers/question" class="btn btn-red"><i class="fa fa-chevron-left"></i>Back</a>
+            </span>
+      	</div>
+        <div class="row">
+           <div class="col-md-12 ques-ans m-t-15">
+           	<h2>{{questionR.question}}</h2>
+           	<ul class="list-unstyled">
+            	<li ng-repeat="answerR in answers">
+                	<p>{{answerR.answer}}</p>
+                </li>
+                <li ng-show="paginates.total == 0">
+                	<p class="hor-space alert alert-danger text-center">{{'No Answers available'| translate}}</p>
+                </li>
+            </ul>
+           </div>
+        </div>
+	</div>
+</section>
+
+

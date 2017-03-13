@@ -1,0 +1,255 @@
+<div id="content" ng-controller="ClinicCtrl">
+    <section id="widget-grid" class="col-sm-2" widget-grid>
+
+    <!-- row -->
+    <div class="row">
+
+        <!-- NEW WIDGET START -->
+        <article class="col-sm-12">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div jarvis-widget data-widget-color="blueLight" id="wid-id-0" data-widget-editbutton="false">
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <form class="dropzone" data-smart-dropzone="dropzoneConfig">
+                            <div class="dz-default dz-message"><span><span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"> Upload <span class="font-xs">clinic logo</span></span></span></span></span></div>
+                        </form>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+        <!-- WIDGET END -->
+
+    </div>
+
+    <!-- end row -->
+    </section>
+    <section id="widget-grid" class="col-sm-5" widget-grid>
+
+        <div ng-if="alert.msg != ''" class="alert alert-{{alert.type}}"><span ng-bind-html="alert.msg"></span></div>
+    <!-- row -->
+        <div class="row">
+
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div jarvis-widget id="basic-form-elements" data-widget-colorbutton="false" data-widget-editbutton="false"
+                     data-widget-custombutton="false">
+                <!-- widget options:
+                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-togglebutton="false"
+                data-widget-deletebutton="false"
+                data-widget-fullscreenbutton="false"
+                data-widget-custombutton="false"
+                data-widget-collapsed="true"
+                data-widget-sortable="false"
+
+                -->
+                    <header>
+
+                        <h2>Clinic Information</h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            <form class="smart-form">
+
+                                <fieldset>
+
+                                    <section>
+                                        <label class="label">Clinic Name</label>
+                                        <label class="input {{labelClasses.name}}">
+                                            <input type="text" placeholder="Name" ng-model="clinic.name">
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Address1</label>
+                                        <label class="input {{labelClasses.address1}}">
+                                            <input type="text" placeholder="Address" ng-blur="geoCode()" ng-model="clinic.address1">
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Address2</label>
+                                        <label class="input {{labelClasses.address2}}">
+                                            <input type="text" placeholder="Address line" ng-blur="geoCode()"  ng-model="clinic.address2">
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Perfecture</label>
+                                        <label class="input {{labelClasses.perfecture}}">
+                                            <input type="text" placeholder="Name"  ng-model="clinic.perfecture">
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">City</label>
+                                        <label class="select {{labelClasses.cityId}}">
+                                            <select name="mySelect" id="mySelect"
+                                                    ng-options="city.id as city.name for city in cities track by city.id"
+                                                    ng-model="clinic.cityId"></select>
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Postal Code</label>
+                                        <label class="input {{labelClasses.postalCode}}">
+                                            <input type="text" placeholder="Name"  ng-model="clinic.postalCode">
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Web address</label>
+                                        <label class="input {{labelClasses.webAddress}}">
+                                            <input type="text" placeholder="www.xyz.com"  ng-model="clinic.webAddress">
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Contact</label>
+                                        <label class="input {{labelClasses.contactName}}">
+                                            <input type="text" placeholder="contact name"  ng-model="clinic.contactName">
+                                        </label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Contact</label>
+                                        <label class="input {{labelClasses.contactPhone}}">
+                                            <input type="text" placeholder="+81-xxx-xxxx-xxxx"  ng-model="clinic.contactPhone">
+                                        </label>
+                                    </section>
+
+                                </fieldset>
+
+                                <footer>
+                                    <button type="submit" class="btn btn-primary" ng-click="submitForm()" ng-disabled="isNotValid()">
+                                        Submit
+                                    </button>
+                                    <button type="button" class="btn btn-default" onclick="window.history.back();">
+                                        cancel
+                                    </button>
+                                </footer>
+                            </form>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+            </article>
+            <!-- END COL -->
+            </div>
+        <div id="map3" style="height:500px; width:500px;"></div>
+
+    </section>
+    <!-- @link: widgetGrid directive  -->
+    <section id="widget-grid" class="col-sm-5" data-widget-grid>
+        <!-- row -->
+        <div class="row" style="margin-bottom:20px;">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <!-- @link: jarvisWidget -->
+                <div data-jarvis-widget id="data-attribute-driven-widget" data-widget-editbutton="false"
+                     data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-color="white"
+                     style="margin-bottom: 0;">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-map-marker"></i> </span>
+                        <h2>Map demo</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget content -->
+                        <div class="widget-body no-padding"
+                             data-smart-fit-app-view="#map-canvas" data-leading-y="160">
+
+                            <div data-smart-fill-content="" style="height:390px;">
+                                <!--<ui-gmap-google-map control='map.control' center='{ latitude: 45, longitude: -73 }' zoom='map.zoom'></ui-gmap-google-map>-->
+                                <div style="height: 500px;">
+                                    <!--<script type="text/ng-template" id="searchbox.tpl.html">-->
+                                        <!--<input type="text" ng-model="clinic.address1"-->
+                                               <!--placeholder="{{'searchbox.google.maps' | text}}"-->
+                                               <!--style="width:270px; height:30px;">-->
+                                    <!--</script>-->
+
+                                    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+
+
+
+                                    </ui-gmap-google-map>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content data-gmap-src="xml/gmap/pins.xml" -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div jarvis-widget data-widget-color="blueLight" id="wid-id-2" data-widget-editbutton="false">
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <form class="dropzone" data-smart-dropzone="dropzoneConfig">
+                            <div class="dz-default dz-message"><span><span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"> Upload <span class="font-xs">clinic images</span></span></span></span></span></div>
+                        </form>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+        <!-- WIDGET END -->
+
+    </div>
+    </section>
+    <!-- end widget grid -->
+
+
+</div>

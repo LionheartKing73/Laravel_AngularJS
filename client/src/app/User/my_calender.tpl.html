@@ -1,0 +1,53 @@
+<section class="pad-63">
+    <div class="container">
+        <div class="page-head">
+            <h1>{{'My Calendar'|translate}}</h1>
+        </div>
+        <div class="col-md-12 calendar-block">
+            <div class="calendar-header text-center">
+                <h2 class="text-center">{{ model.calendarTitle }}</h2>
+                <div class="pull-left">
+                    <div class="btn-group">
+                        <button class="btn btn-lgreen" mwl-date-modifier date="model.viewDate"  decrement="model.calendarView" ng-click="prev()">
+                            Previous
+                        </button>
+                        <button class="btn btn-default" mwl-date-modifier date="model.viewDate"  set-to-today ng-click="today()">
+                            Today
+                        </button>
+                        <button class="btn btn-lgreen"  mwl-date-modifier  date="model.viewDate" increment="model.calendarView" ng-click="next()">
+                            Next
+                        </button>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <!--<label class="btn btn-lgreen" ng-model="model.calendarView" uib-btn-radio="'year'">Year</label>-->
+                        <label class="btn btn-lgreen" ng-model="model.calendarView" uib-btn-radio="'month'">Month</label>
+                        <label class="btn btn-lgreen" ng-model="model.calendarView" uib-btn-radio="'week'">Week</label>
+                        <label class="btn btn-lgreen" ng-model="model.calendarView" uib-btn-radio="'day'">Day</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="calendar-body">
+                <mwl-calendar
+                        events="model.events"
+                        view="model.calendarView"
+                        view-title="model.calendarTitle"
+                        view-date="model.viewDate"
+                        on-event-click="model.eventClicked(calendarEvent)"
+                        on-event-times-changed="model.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+                        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+                        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+                        on-edit-event-click="model.eventEdited(calendarEvent)"
+                        on-delete-event-click="model.eventDeleted(calendarEvent)"
+                        cell-is-open="model.isCellOpen"
+                        day-view-start="00:00"
+                        day-view-end="23:00"
+                        day-view-split="30"
+                        cell-modifier="model.modifyCell(calendarCell)">
+                </mwl-calendar>
+            </div>
+        </div>
+    </div>
+</section>

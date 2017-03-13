@@ -1,0 +1,164 @@
+<section class="pad-63 book-appmt-block">
+    <div class="container">
+        <div class="page-head">
+            <h1>{{'Book Your Appointment'| translate}}</h1>
+        </div>
+        <div class="appmt-steps col-md-12">
+            <ul class="list-inline row">
+                <li class="complete-step col-md-4">
+                    <span>Step 1</span> 
+                    <p class="tab-title">{{'Appointment Info'| translate}}</p>
+                </li>
+                <li class="current-step col-md-4">
+                    <span>Step 2</span> 
+                    <p class="tab-title">{{'Patient Info'| translate}}</p>
+                </li>
+                <!--<li class="col-md-3">
+                    <span>3</span> 
+                    <p class="tab-title">{{'Details'| translate}}</p>
+                </li>-->
+                <li class="col-md-4">
+                    <span>Step 3</span> 
+                    <p class="tab-title">{{'Complete'| translate}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12 book-doctor-details">
+        	<div class="col-md-4">
+            	<div class="media">
+                	<div class="media-left">
+                    	<img class="doctor-image" ng-src="{{doctorProfile.User.data.attachmentable.data.thumb.medium}}" alt="Dr. Patricia A. Lloyd">
+                    </div>
+                    <div class="media-body">
+                   		<h3>{{doctorProfile.dr_title}} {{doctorProfile.first_name}} {{doctorProfile.last_name}}</h3>
+                        <input-stars max="5" icon-base="fa fa-fw" icon-empty="fa-star" icon-hover="hover" icon-full="fa-star" readonly="true" ng-model="doctorProfile.start_rating"></input-stars>
+                    </div>
+              	</div>
+        	</div>
+            <div class="col-md-4">
+            	<address class="text-blue"> {{doctorProfile.address}} </address>
+            </div>
+            <div class="col-md-4">
+            	<div class="js-time"> 
+                    <ul class="list-unstyled">
+                        <li>{{'Appt Date:'| translate }} <span>{{appt_date}}</span></li>
+                        <li>{{'Appt Time:'| translate }} <span>{{appt_time}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 doctor-visit patient-info row">
+            <div ng-if="$root.auth.role_id == model.ConstUserType.User">
+                <form class="form-content row form-horizontal col-md-12" name="steptwo" ng-submit="model.step2(steptwo.$valid)" novalidate>
+                    <div class="form-group clearfix">
+                        <div class="radio col-md-2">
+                            <label>
+                                <input class="hide" type="radio" ng-model="model.formValue.is_guest_appointment" name="is_guest_appointment" value="0">				 						 								<span></span>{{$root.auth.user_profile.first_name}}
+                            </label>
+                        </div>
+                        <div class="radio col-md-4">
+                            <label>
+                                <input class="hide" type="radio" ng-model="model.formValue.is_guest_appointment" name="is_guest_appointment" value="1">
+                                <span></span>Guest Details
+                            </label>
+                        </div>
+                    </div>
+
+                    <div ng-show="model.formValue.is_guest_appointment == false">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="first_name" ng-model="model.formValue.first_name" placeholder="First Name" class="form-control" ng-required="model.formValue.is_guest_appointment == false" ng-minlength="3" ng-maxlength="25" ng-pattern="/^[a-z A-Z]*$/"/>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.first_name.$touched) && (steptwo.first_name.$pristine || steptwo.first_name.$invalid) && (steptwo.first_name.$error.required)">{{'First Name Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.first_name.$touched) && (steptwo.first_name.$pristine || steptwo.first_name.$invalid) && (steptwo.first_name.$error.minlength)">{{'Minimum 3 character required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.first_name.$touched) && (steptwo.first_name.$pristine || steptwo.first_name.$invalid) && (steptwo.first_name.$error.maxlength)">{{'Maximum 25 Character'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.first_name.$touched) && (steptwo.first_name.$pristine || steptwo.first_name.$invalid) && (steptwo.first_name.$error.pattern)">{{'Enter a valid name without numbers'| translate }}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="last_name" ng-model="model.formValue.last_name" class="form-control" placeholder="Last Name" ng-required="model.formValue.is_guest_appointment == false" ng-minlength="1" ng-maxlength="20" ng-pattern="/^[a-z A-Z]*$/"/>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.last_name.$touched) && (steptwo.last_name.$pristine || steptwo.last_name.$invalid) && (steptwo.last_name.$error.required)">{{'Last Name Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.last_name.$touched) && (steptwo.last_name.$pristine || steptwo.last_name.$invalid) && (steptwo.last_name.$error.minlength)">{{'Minimum 1 character required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.last_name.$touched) && (steptwo.last_name.$pristine || steptwo.last_name.$invalid) && (steptwo.last_name.$error.maxlength)">{{'Maximum 20 Character'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.last_name.$touched) && (steptwo.last_name.$pristine || steptwo.last_name.$invalid) && (steptwo.last_name.$error.pattern)">{{'Enter a valid name without numbers'| translate }}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select ng-model="model.formValue.gender_id" class="form-control" name="gender_id" ng-required="model.formValue.is_guest_appointment == false">
+                                <option value=""> Select Gender</option>
+                                <option ng-repeat="gender in model.genderList" value="{{gender.id}}">{{gender.name}}</option>
+                            </select>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.gender_id.$touched) && (steptwo.gender_id.$pristine || steptwo.gender_id.$invalid) && (steptwo.gender_id.$error.required)">{{'Select a Gender'| translate }}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="postal_code" ng-model="model.formValue.postal_code" placeholder="Postal Code" class="form-control" ng-minlength="3" ng-maxlength="10" ng-required="model.formValue.is_guest_appointment == false"/>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.postal_code.$touched) && (steptwo.postal_code.$pristine || steptwo.postal_code.$invalid) && (steptwo.postal_code.$error.required)">{{'Postal Code Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.postal_code.$touched) && (steptwo.postal_code.$pristine || steptwo.postal_code.$invalid) && (steptwo.postal_code.$error.minlength)">{{'Minimum 3 Character Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.postal_code.$touched) && (steptwo.postal_code.$pristine || steptwo.postal_code.$invalid) && (steptwo.postal_code.$error.maxlength)">{{'Maximum 10 Character Required'| translate }}</span>
+                        </div>
+                        
+                    </div>
+
+                    <div ng-show="model.formValue.is_guest_appointment == true">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="guest_first_name" ng-model="model.formValue.guest_first_name" placeholder="First Name" class="form-control" ng-required="model.formValue.is_guest_appointment == true" ng-minlength="3" ng-maxlength="25" ng-pattern="/^[a-z A-Z]*$/"/>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_first_name.$touched) && (steptwo.guest_first_name.$pristine || steptwo.guest_first_name.$invalid) && (steptwo.guest_first_name.$error.required)">{{'First Name Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_first_name.$touched) && (steptwo.guest_first_name.$pristine || steptwo.guest_first_name.$invalid) && (steptwo.guest_first_name.$error.minlength)">{{'Minimum 3 character required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_first_name.$touched) && (steptwo.guest_first_name.$pristine || steptwo.guest_first_name.$invalid) && (steptwo.guest_first_name.$error.maxlength)">{{'Maximum 25 Character'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_first_name.$touched) && (steptwo.guest_first_name.$pristine || steptwo.guest_first_name.$invalid) && (steptwo.guest_first_name.$error.pattern)">{{'Enter a valid name without numbers'| translate }}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="guest_last_name" ng-model="model.formValue.guest_last_name" placeholder="Last Name" class="form-control" ng-required="model.formValue.is_guest_appointment == true" ng-minlength="1" ng-maxlength="20" ng-pattern="/^[a-z A-Z]*$/"/>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_last_name.$touched) && (steptwo.guest_last_name.$pristine || steptwo.guest_last_name.$invalid) && (steptwo.guest_last_name.$error.required)">{{'Last Name Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_last_name.$touched) && (steptwo.guest_last_name.$pristine || steptwo.guest_last_name.$invalid) && (steptwo.guest_last_name.$error.minlength)">{{'Minimum 1 Character'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_last_name.$touched) && (steptwo.guest_last_name.$pristine || steptwo.guest_last_name.$invalid) && (steptwo.guest_last_name.$error.maxlength)">{{'Maximum 20 Character'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_last_name.$touched) && (steptwo.guest_last_name.$pristine || steptwo.guest_last_name.$invalid) && (steptwo.guest_last_name.$error.pattern)">{{'Enter a valid name without numbers'| translate }}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="guest_postal_code" ng-model="model.formValue.guest_postal_code" placeholder="Postal Code" class="form-control" ng-minlength="3" ng-maxlength="10" ng-required="model.formValue.is_guest_appointment == true"/>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_postal_code.$touched) && (steptwo.guest_postal_code.$pristine || steptwo.guest_postal_code.$invalid) && (steptwo.guest_postal_code.$error.required)">{{'Postal Code Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_postal_code.$touched) && (steptwo.guest_postal_code.$pristine || steptwo.guest_postal_code.$invalid) && (steptwo.guest_postal_code.$error.minlength)">{{'Minimum 3 Character Required'| translate }}</span>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_postal_code.$touched) && (steptwo.guest_postal_code.$pristine || steptwo.guest_postal_code.$invalid) && (steptwo.guest_postal_code.$error.maxlength)">{{'Maximum 10 Character Required'| translate }}</span>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="email" name="guest_email" ng-model="model.formValue.guest_email" placeholder="Email" class="form-control" ng-required="model.formValue.is_guest_appointment == true" ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}$/"/>
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_email.$touched) && (steptwo.guest_email.$pristine || steptwo.guest_email.$invalid) && (steptwo.guest_email.$error.required)">{{'Enter Email'| translate }}</span>
+                            <!--<span class="error" ng-show="(steptwo.$submitted || steptwo.guest_email.$touched) && (steptwo.guest_email.$pristine || steptwo.guest_email.$invalid) && (steptwo.guest_email.$error.email)">{{'Enter valid email'| translate }}</span>-->
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_email.$touched) && (steptwo.guest_email.$pristine || steptwo.guest_email.$invalid) && (steptwo.guest_email.$error.pattern)">{{'Enter valid email'| translate }}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input class="form-control" ng-model="model.formValue.guest_dob" data-date-format="yyyy-MM-dd" data-max-date="{{dobDateLimit}}" data-autoclose="1" name="guest_dob" bs-datepicker type="text" ng-required="model.formValue.is_guest_appointment == true">
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_dob.$touched) && (steptwo.guest_dob.$pristine || steptwo.guest_dob.$invalid) && (steptwo.guest_dob.$error.required)">{{'Select DOB'| translate }}</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select ng-model="model.formValue.guest_gender_id" class="form-control" name="guest_gender_id" ng-required="model.formValue.is_guest_appointment == true">
+                                <option value=""> Select Gender </option>
+                                <option ng-repeat="sex in model.genderList" value="{{sex.id}}">{{sex.name}}</option>
+                            </select> 
+                            <span class="error" ng-show="(steptwo.$submitted || steptwo.guest_gender_id.$touched) && (steptwo.guest_gender_id.$pristine || steptwo.guest_gender_id.$invalid) && (steptwo.guest_gender_id.$error.required)">{{'Select a Gender'| translate }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="common">
+                        <div class="form-group col-md-6">
+                            <input type="text" ng-model="model.formValue.phone" name="phone" placeholder="Mobile" class="form-control" ng-required="true" ng-minlength="8" ng-maxlength="12" ng-pattern="/^[0-9]*$/">
+                             <span class="error" ng-show="(steptwo.$submitted || steptwo.phone.$touched) && (steptwo.phone.$pristine || steptwo.phone.$invalid) && (steptwo.phone.$error.required)">{{'Enter Phone Number'| translate }}</span>
+                             <span class="error" ng-show="(steptwo.$submitted || steptwo.phone.$touched) && (steptwo.phone.$pristine || steptwo.phone.$invalid) && (steptwo.phone.$error.minlength)">{{'Minimum 8 digits'| translate }}</span>
+                             <span class="error" ng-show="(steptwo.$submitted || steptwo.phone.$touched) && (steptwo.phone.$pristine || steptwo.phone.$invalid) && (steptwo.phone.$error.maxlength)">{{'Maximum 12 digits'| translate }}</span>
+                             <span class="error" ng-show="(steptwo.$submitted || steptwo.phone.$touched) && (steptwo.phone.$pristine || steptwo.phone.$invalid) && (steptwo.phone.$error.pattern)">{{'Enter a valid phone number'| translate }}</span> 
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea ng-model="model.formValue.notes" name="patient_notes" placeholder="Any note's for the doctor's office?" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <button class="btn btn-block btn-green" type="submit">{{'Book for Free'| translate }}</button>
+                    </div>
+                </form>
+            </div>
+
+            <div ng-if="$root.auth.role_id == model.ConstUserType.Doctor">
+                <div class="alert alert-danger">
+                    <strong><i class='fa fa-ban'></i> {{$root.auth.user_profile.dr_title}} {{$root.auth.user_profile.first_name}}</strong> Doctor will not able to schedule an appointment.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

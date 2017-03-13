@@ -1,0 +1,293 @@
+{
+  "apis": [
+    {
+      "path": "/user/login",
+      "operations": [
+        {
+          "summary": "User login",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "User",
+              "paramType": "body",
+              "required": true,
+              "type": "User",
+              "format": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "POST",
+          "nickname": "invite_user"
+        }
+      ]
+    },
+    {
+      "path": "/user/invite",
+      "operations": [
+        {
+          "summary": "Invite user",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "InviteUser",
+              "paramType": "body",
+              "required": true,
+              "type": "InviteUser",
+              "format": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "POST",
+          "nickname": "invite_user"
+        }
+      ]
+    },
+    {
+      "path": "/user/permissions",
+      "operations": [
+        {
+          "summary": "User permissions",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "user_persmissions"
+        }
+      ]
+    },
+    {
+      "path": "/user/saveRole",
+      "operations": [
+        {
+          "summary": "Save role",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "SaveRole",
+              "paramType": "body",
+              "required": true,
+              "type": "SaveRole",
+              "format": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "POST",
+          "nickname": "save_role"
+        }
+      ]
+    },
+    {
+      "path": "/user/fetchProcess",
+      "operations": [
+        {
+          "summary": "User allowed processes",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "fetch_user_processes"
+        }
+      ]
+    },
+    {
+      "path": "/user/confirm",
+      "operations": [
+        {
+          "summary": "Confirm invited user",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "query",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "confirm user"
+        }
+      ]
+    },
+    {
+      "path": "/user/rights",
+      "operations": [
+        {
+          "summary": "Fetch user rights",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "token",
+              "paramType": "header",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": "200",
+              "message": "OK"
+            },
+            {
+              "code": "404",
+              "message": "Not Found; Not found"
+            }
+          ],
+          "method": "GET",
+          "nickname": "fetch_rights"
+        }
+      ]
+    }
+  ],
+  "models":{
+    "InviteUser":{
+      "properties":{
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "User name"
+        },
+        "email":{
+          "type": "string",
+          "required": true,
+          "description": "User email address"
+        },
+        "roleId":{
+          "type": "integer",
+          "required": true,
+          "description": "Role to be assigned"
+        }
+      }
+    },
+    "SaveRole":{
+      "properties":{
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "Role name"
+        },
+        "description":{
+          "type": "string",
+          "required": true,
+          "description": "Role description"
+        },
+        "rights":{
+          "type": "object",
+          "required": true,
+          "description": "rights to be attached with role like {\"POS001\":[\"abs\",\"kjn\"],\"POS002\":[\"abs\",\"kjn\"]}"
+        }
+      }
+    },
+    "User":{
+      "properties":{
+        "email": {
+          "type": "string",
+          "required": true,
+          "description": "User email"
+        },
+        "password":{
+          "type": "string",
+          "required": true,
+          "description": "User password"
+        }
+      }
+    }
+  },
+  "swaggerVersion": "1.2",
+  "apiVersion": "1",
+  "basePath": "/public/api"
+}

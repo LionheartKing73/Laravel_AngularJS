@@ -1,0 +1,91 @@
+<section class="pad-63 book-appmt-block">
+    <div class="container">
+        <div class="page-head">
+            <h1>{{'Book Your Appointment'| translate}}</h1>
+        </div>
+        <div class="appmt-steps col-md-12">
+            <ul class="list-inline row">
+                <li class="current-step col-md-4">
+                    <span>Step 1</span> 
+                    <p class="tab-title">{{'Appointment Info'| translate}}</p>
+                </li>
+                <li class="col-md-4">
+                    <span>Step 2</span> 
+                    <p class="tab-title">{{'Patient Info'| translate}}</p>
+                </li>
+                <li class="col-md-4">
+                    <span>Step 3</span> 
+                    <p class="tab-title">{{'Complete'| translate}}</p>
+                </li>
+                <!--<li class="col-md-3">
+                    <span>4</span> 
+                    <p class="tab-title">{{'Finished'| translate}}</p>
+                </li>-->
+            </ul>
+        </div>
+        <div class="col-md-12 book-doctor-details">
+            <div class="col-md-5">
+            	<div class="media">
+                	<div class="media-left">
+                    	<img class="doctor-image" ng-src="{{doctorProfile.User.data.attachmentable.data.thumb.medium}}" alt="{{doctorProfile.dr_title}} {{doctorProfile.first_name}} {{doctorProfile.last_name}}">
+                    </div>
+                    <div class="media-body">
+                    	<h3>{{doctorProfile.dr_title}} {{doctorProfile.first_name}} {{doctorProfile.last_name}}</h3>
+                        <input-stars max="5" icon-base="fa fa-fw" icon-empty="fa-star" icon-hover="hover" icon-full="fa-star" readonly="true" ng-model="doctorProfile.start_rating"></input-stars>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <address class="text-blue"> {{doctorProfile.address}} </address>
+            </div>
+            <div class="js-time col-md-4"> 
+                <ul class="list-unstyled">
+                    <li>{{'Appt Date:'| translate }} <span>{{appt_date}}</span></li>
+                    <li>{{'Appt Time:'| translate }} <span>{{appt_time}}</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-8 doctor-visit row">
+            <div ng-if="$root.auth.role_id == model.ConstUserType.User">
+                <form class="form-content row col-md-12" name="stepone" ng-submit="model.step1(stepone.$valid)" novalidate>
+                    <div class="form-group">
+                        <h4>Have you visited this doctor before?</h4>
+                        <div class="row">
+                            <div class="radio col-md-4">
+                                <label>
+                                    <input class="hide" type="radio" ng-model="model.formFields.is_seen_before" name="is_seen_before" value="1">
+                                    <span></span>I am a new patient.
+                                </label>
+                            </div>
+                            <div class="radio col-md-8 col-lg-6">
+                                <label>
+                                    <input class="hide" type="radio" ng-model="model.formFields.is_seen_before" name="is_seen_before" value="0">
+                                    <span></span>I am an existing patient of this practice.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <!--<h4 class="text-sblue">What's the reason for your visit?</h4>
+                            <label class="text-grey">Select your reason</label>-->
+                            <select ng-model="model.formFields.specialty_disease_id" class="form-control" name="specialty_disease_id" ng-required="true" required="required">
+                                <option value="">Select your reason</option>
+                                <option ng-repeat="diseas in model.diseasList" value="{{diseas.id}}">{{diseas.name}}</option>
+                            </select> 
+                            <span class="error" ng-show="(stepone.$submitted || stepone.specialty_disease_id.$touched) && (stepone.specialty_disease_id.$pristine || logisteponenForm.specialty_disease_id.$invalid) && (stepone.specialty_disease_id.$error.required)">{{'Select a Reason'| translate }}</span>
+                        </div>
+                        <div class="col-md-3 book-free">
+                            <button class="btn btn-block btn-green" type="submit">{{'Book for Free'| translate }}</button>
+                        </div>
+                 	</div>
+                </form>
+            </div>
+            <div ng-if="$root.auth.role_id == model.ConstUserType.Doctor">
+                <div class="alert alert-danger">
+                    <strong><i class='fa fa-ban'></i> {{$root.auth.user_profile.dr_title}} {{$root.auth.user_profile.first_name}}</strong> Doctor will not able to schedule an appointment.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

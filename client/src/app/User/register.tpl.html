@@ -1,0 +1,209 @@
+<div class="register">
+    <div class="container">
+        <div class="user-login col-sm-8 col-sm-offset-2 row">
+            <div class="user-signup">
+                <div class="form-heading">
+                    <h2 class="form-login-heading">Create a new account
+                        <a href="#/users/register/doctor" ng-show="model.user_type == 'patient'" title="{{'Not a Patient? Click here'|translate}}" class="btn btn-white pull-right">{{'Not a Patient? Click here'|translate}}</a>
+                        <a href="#/users/register/patient" ng-show="model.user_type == 'doctor'" title="{{'Not a Doctor? Click here'|translate}}" class="btn btn-white pull-right">{{'Not a Doctor? Click here'|translate}}</a>
+                    </h2>
+                </div>
+                <form class="form-login form-horizontal" name="signupForm" ng-submit="model.signup(signupForm.$valid)" novalidate>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-sm-12 form-name">Name</label>
+                            <div class="col-sm-6" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.first_name.$touched) && (signupForm.first_name.$pristine || signupForm.first_name.$invalid)}">
+                                <input type="text" class="form-control" placeholder="Please enter your first name" name="first_name" ng-model="model.first_name" ng-required="true" ng-minlength="3" ng-pattern="/^[a-z A-Z]*$/">
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.first_name.$touched) && (signupForm.first_name.$pristine || signupForm.first_name.$invalid) && (signupForm.first_name.$error.required)">{{'Please enter your first name'| translate }} </span>
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.first_name.$touched) && (signupForm.first_name.$pristine || signupForm.first_name.$invalid) && (signupForm.first_name.$error.minlength)">{{ 'Minimum length is 3' | translate }}</span>
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.first_name.$touched) && (signupForm.first_name.$pristine || signupForm.first_name.$invalid) && (signupForm.first_name.$error.pattern)">{{ 'Enter Valid name without number' | translate }}</span>
+                                 
+                            </div>
+                                <div class="col-sm-6" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.last_name.$touched) && (signupForm.last_name.$pristine || signupForm.last_name.$invalid)}">
+                                <input type="text" class="form-control" placeholder="Please enter your last name" name="last_name" ng-model="model.last_name" ng-required="true" ng-minlength="3" ng-pattern="/^[a-z A-Z]*$/">
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.last_name.$touched) && (signupForm.last_name.$pristine || signupForm.last_name.$invalid) && (signupForm.last_name.$error.required)">{{'Please enter your last name'| translate }} </span>
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.last_name.$touched) && (signupForm.last_name.$pristine || signupForm.last_name.$invalid) && (signupForm.last_name.$error.minlength)">{{ 'Minimum length is 3' | translate }}</span>
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.last_name.$touched) && (signupForm.last_name.$pristine || signupForm.last_name.$invalid) && (signupForm.last_name.$error.pattern)">{{ 'Enter valid name without number' | translate }}</span>
+
+                                 
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.gender_id.$touched) && (signupForm.gender_id.$pristine || signupForm.gender_id.$invalid)}">
+                            <div class="col-sm-6">
+                                <label class="col-sm-12">Gender</label>
+                                <select ng-model="model.gender_id" ng-required="true" name="gender_id" class="form-control">
+                                    <option value="">Select from list</option>
+                                    <option ng-repeat="genderList in genderLists" value="{{genderList.id}}">{{genderList.name}}</option>
+                                </select>
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.gender_id.$touched) && (signupForm.gender_id.$pristine || signupForm.gender_id.$invalid) && (signupForm.gender_id.$error.required)">{{'Select Gender'| translate }} </span>
+                                <span class="error" ng-show="(signupForm.$submitted || signupForm.gender_id.$touched) && (signupForm.gender_id.$pristine || signupForm.gender_id.$invalid) && (signupForm.gender_id.$error.minlength)">{{ 'Minimum length is 3' | translate }}</span>
+                                 
+                            </div>
+                        </div>
+                        <div ng-if="model.user_type == 'patient'">
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Username</label>
+                                    <input type="text" class="form-control" placeholder="Username" name="username" ng-model="model.username" ng-required="true" ng-minlength="3" ng-pattern="/^[a-z0-9]*$/">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid) && (signupForm.username.$error.required)">{{'Please enter your Username'| translate }} </span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid) && (signupForm.username.$error.minlength)">{{ 'Minimum length is 3' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid) && (signupForm.username.$error.pattern)">{{ 'Enter valid username without space and caps' | translate }}</span>
+                                    <span class="error" ng-if="model.nameErr">{{model.nameErr}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.email.$touched) && (signupForm.email.$pristine || signupForm.email.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Email</label>
+                                    <input type="text" class="form-control" placeholder="Email" name="email" ng-model="model.email" ng-required="true">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.email.$touched) && (signupForm.email.$pristine || signupForm.email.$invalid) && (signupForm.email.$error.required)">{{'Please enter your mail id'| translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.email.$touched) && (signupForm.email.$pristine || signupForm.email.$invalid) && (signupForm.email.$error.email)">{{'Enter valid email'| translate }}</span>
+                                    <span class="error" ng-show="model.emailErr">{{model.emailErr}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Create a Password</label>
+                                    <input type="password" class="form-control" placeholder="Password" name="password" ng-model="model.password" ng-required="true" ng-minlength="6" ng-maxlength="40">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid) && (signupForm.password.$error.required)">{{ 'Enter Password' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid) && (signupForm.password.$error.minlength)">{{ 'Minimum length is 6' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid) && (signupForm.password.$error.maxlength)">{{ 'Maximum length is 20' | translate }}</span>
+                                    <span class="error" ng-show="model.passwordErr">{{model.passwordErr}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Confirm a Password</label>
+                                    <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" ng-model="model.confirm_password" ng-required="true" ng-minlength="6" ng-maxlength="40">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid) && (signupForm.confirmPassword.$error.required)">{{'Enter Confirm Password'| translate}}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid) && (signupForm.confirmPassword.$error.minlength)">{{'Minimum length is 6'| translate}}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid) && (signupForm.confirmPassword.$error.maxlength)">{{'Maximum length is 20'| translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.password.$dirty && signupForm.confirmPassword.$dirty) && (model.password != model.confirm_password)">{{'Password Mismatch'| translate }}</span>
+                                    <span class="error" ng-show="model.confirmPasswordErr">{{model.confirmPasswordErr}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="model.user_type == 'doctor'">
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Username</label>
+                                    <input type="text" class="form-control" placeholder="Username" name="username" ng-model="model.username" ng-required="true" ng-minlength="3" ng-pattern="/^[a-z0-9]*$/">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid) && (signupForm.username.$error.required)">{{'Please enter your Username'| translate }} </span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid) && (signupForm.username.$error.minlength)">{{ 'Minimum length is 3' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.username.$touched) && (signupForm.username.$pristine || signupForm.username.$invalid) && (signupForm.username.$error.pattern)">{{ 'Enter valid username without space and caps' | translate }}</span>
+                                    <span class="error" ng-if="model.nameErr">{{model.nameErr}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.email.$touched) && (signupForm.email.$pristine || signupForm.email.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Email</label>
+                                    <input type="email" class="form-control" placeholder="Email" name="email" ng-model="model.email"  ng-required="true">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.email.$touched) && (signupForm.email.$pristine || signupForm.email.$invalid) && (signupForm.email.$error.required)">{{'Please enter your mail id'| translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.email.$touched) && (signupForm.email.$pristine || signupForm.email.$invalid) && (signupForm.email.$error.email)">{{'Enter valid email'| translate }}</span>
+                                    <span class="error" ng-show="model.emailErr">{{model.emailErr}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Create a Password</label>
+                                    <input type="password" class="form-control" placeholder="Password" name="password" ng-model="model.password" ng-required="true" ng-minlength="6" ng-maxlength="40">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid) && (signupForm.password.$error.required)">{{ 'Please enter password' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid) && (signupForm.password.$error.minlength)">{{ 'Minimum length is 6' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.password.$touched) && (signupForm.password.$pristine || signupForm.password.$invalid) && (signupForm.password.$error.maxlength)">{{ 'Maximum length is 20' | translate }}</span>
+                                    <span class="error" ng-show="model.passwordErr">{{model.passwordErr}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Confirm a Password</label>
+                                    <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" ng-model="model.confirm_password" ng-required="true" ng-minlength="6" ng-maxlength="40">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid) && (signupForm.confirmPassword.$error.required)">{{'Please enter confirm password'| translate}}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid) && (signupForm.confirmPassword.$error.minlength)">{{'Minimum length is 6'| translate}}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.confirmPassword.$pristine || signupForm.confirmPassword.$invalid) && (signupForm.confirmPassword.$error.maxlength)">{{'Maximum length is 20'| translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.confirmPassword.$touched) && (signupForm.password.$dirty && signupForm.confirmPassword.$dirty) && (model.password != model.confirm_password)">{{'Password Mismatch'| translate }}</span>
+                                    <span class="error" ng-show="model.confirmPasswordErr">{{model.confirmPasswordErr}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.phone.$touched) && (signupForm.phone.$pristine || signupForm.phone.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Phone</label>
+                                    <input type="text" class="form-control" placeholder="Phone" name="phone" ng-model="model.phone" ng-required="true" ng-minlength="8" ng-maxlength="12" ng-pattern="/^[0-9]*$/">
+                                     <span class="error" ng-show="(signupForm.$submitted || signupForm.phone.$touched) && (signupForm.phone.$pristine || signupForm.phone.$invalid) && (signupForm.phone.$error.required)">{{'Enter Phone Number'| translate }} </span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.phone.$touched) && (signupForm.phone.$pristine || signupForm.phone.$invalid) && (signupForm.phone.$error.maxlength)">{{ 'Maximum length is 12' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.phone.$touched) && (signupForm.phone.$pristine || signupForm.phone.$invalid) && (signupForm.phone.$error.minlength)">{{ 'Minimum length is 8' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.phone.$touched) && (signupForm.phone.$pristine || signupForm.phone.$invalid) && (signupForm.phone.$error.pattern)">{{'Enter Valid Mobile Number Without Character'| translate }} </span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.postal_code.$touched) && (signupForm.postal_code.$pristine || signupForm.postal_code.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Postal Code</label>
+                                    <input type="text" class="form-control" placeholder="Postal Code" name="postal_code" ng-model="model.postal_code"  ng-required="true" ng-minlength="3" ng-maxlength="10">
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.postal_code.$touched) && (signupForm.postal_code.$pristine || signupForm.postal_code.$invalid) && (signupForm.postal_code.$error.required)">{{'Enter Postal Code'| translate }} </span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.postal_code.$touched) && (signupForm.postal_code.$pristine || signupForm.postal_code.$invalid) && (signupForm.postal_code.$error.minlength)">{{ 'Minimum length is 3' | translate }}</span>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.postal_code.$touched) && (signupForm.postal_code.$pristine || signupForm.postal_code.$invalid) && (signupForm.postal_code.$error.maxlength)">{{ 'Maximum length is 10' | translate }}</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.specialty_id.$touched) && (signupForm.specialty_id.$pristine || signupForm.specialty_id.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Specialty</label>
+                                    <select ng-model="model.specialty_id" ng-required="true" name="specialty_id" class="form-control">
+                                        <option value="">Please enter specialty</option>
+                                        <option ng-repeat="specialtyliList in specialtyliLists" value="{{specialtyliList.id}}">{{specialtyliList.name}}</option>
+                                    </select>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.specialty_id.$touched) && (signupForm.specialty_id.$pristine || signupForm.specialty_id.$invalid) && (signupForm.specialty_id.$error.required)">{{'Please select specialty'| translate }} </span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.language_id.$touched) && (signupForm.language_id.$pristine || signupForm.language_id.$invalid)}">
+                            	<div class="col-sm-6">
+                                    <label class="col-sm-12">Language</label>
+                                    <select ng-model="model.language_id" ng-required="true" name="language_id" class="form-control">
+                                        <option value="">Please enter language</option>
+                                        <option ng-repeat="languageList in languageLists" value="{{languageList.id}}">{{languageList.name}}</option>
+                                    </select>
+                                    <span class="error" ng-show="(signupForm.$submitted || signupForm.language_id.$touched) && (signupForm.language_id.$pristine || signupForm.language_id.$invalid) && (signupForm.language_id.$error.required)">{{'Please select language'| translate }} </span>                                    
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                        	<div class="col-sm-12">
+                                <div class="g-recaptcha" vc-recaptcha key="model.captcha_site_key" ng-class="{ 'has-error' : model.captchaErr}"></div>
+                                <span class="error" ng-show="model.captchaErr">{{model.captchaErr}}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group progress-reg">
+                        	<div class="col-sm-12">
+                                <p><span></span></p>
+                            </div>
+                        </div>
+    
+                        <div class="form-group checkbox-field" ng-class="{ 'has-error' : (signupForm.$submitted || signupForm.termCondition.$touched) && (signupForm.termCondition.$pristine || signupForm.termCondition.$invalid)}">
+                            <div class="checkbox col-sm-12">
+                                <label>
+                                    <input id="terms_cond" class="hide" type="checkbox" name="termCondition" ng-model="model.terms_conditions" ng-required="true">
+                                    {{'I have read and accept ABS Terms of Use.'| translate }}
+                                    <span></span>
+                                </label>
+                            </div>
+                            <span class="error" ng-show="(signupForm.$submitted || signupForm.termCondition.$touched) && (signupForm.termCondition.$pristine || signupForm.termCondition.$invalid) && (signupForm.termCondition.$error.required)">{{'Required'| translate }}</span>
+                        </div>
+                    </div>
+                    <div class="form-footer clearfix">
+                        <input type="hidden" name="user_type"  ng-value="model.user_type"/>
+                        <div ng-if="widgetLink == ''">
+                            <button class="btn btn-green btn-animate" type="submit">{{'Join Now' | translate }}</button>
+                        </div>
+                        <div ng-if="widgetLink !== ''" class="col-sm-9 col-sm-offset-2">
+                            <div class="pull-left">
+                                <a href="#/users/login" class="btn btn-white btn-animate">Back to Login</a>
+                            </div>
+                            <div class="pull-left">
+                                <button class="btn btn-green btn-animate" type="submit">{{'Join Now' | translate }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

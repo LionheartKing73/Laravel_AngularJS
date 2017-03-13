@@ -1,0 +1,32 @@
+<div class="page-head">
+    <div class="container">
+        <h1>{{'Dashboard' | translate}}</h1>
+    </div>
+</div>
+<div class="container">
+	<div class="dashboard-list">
+        <div class="row">
+            <div class="col-md-2 text-center">
+                <a href="#/doctor/{{user.username}}" title="{{user.username}}" class="thumbnail">
+                    <img ng-if="user.user_avatar_source_id != model.ConstSocialLogin.Twitter && user.user_avatar_source_id != model.ConstSocialLogin.Github" ng-src="{{user.attachmentable.thumb.medium}}" title="{{user.username}}" class="" alt="{{user.username}}">
+                    <img ng-if="user.user_avatar_source_id == model.ConstSocialLogin.Twitter || user.user_avatar_source_id == model.ConstSocialLogin.Github" ng-src="{{user.attachmentable.thumb.medium}}" title="{{user.username}}" class="" alt="{{user.username}}" height="{{model.thumb.medium.height}}" width="{{model.thumb.medium.width}}">
+                </a>
+               	<a href="#/wallets" title="{{'Add Amount to Wallet' | translate}}" class="btn btn-blue btn-animate">
+                        {{'Add Amount to Wallet' | translate}}
+              	</a>
+            </div>
+            <div class="col-md-10">
+                <div class="doctor-profile-details">
+                    <a href="#/doctor/{{user.username}}" title="{{user.username}}">
+                        {{user.username}}
+                    </a>
+                <p>{{user.user_profile.about_me}}</p>
+                <dl class="dl-horizontal">
+                    	<dt>{{'Balance' | translate}}</dt>
+                        <dd><span>:</span>{{user.available_wallet_amount}}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

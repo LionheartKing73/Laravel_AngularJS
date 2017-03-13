@@ -1,0 +1,431 @@
+<div class="doctor-search">
+    <div class="search-block">
+        <div class="container">
+            <form class="form-search form-inline text-center" name="searchForm" ng-submit="model.refinesearch(searchForm)" novalidate>
+                <div class="form-group">
+                    <select ng-model="model.specialty_id" class="form-control" name="specialty_id" convert-to-number>
+                        <option value="">{{'Specialty'| translate }}</option>
+                        <option ng-repeat="specialtyliList in specialtyliLists" value="{{specialtyliList.id}}">{{specialtyliList.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select ng-model="model.city_id" class="form-control" name="city_id" convert-to-number>
+                        <option value="">{{'City'| translate }}</option>
+                        <option ng-repeat="citiesliList in citiesliLists" value="{{citiesliList.id}}">{{citiesliList.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select ng-model="model.insurance_id" class="form-control" name="insurance_id" convert-to-number>
+                        <option value="">{{'Insurance'| translate }}</option>
+                        <option ng-repeat="insurance in insurances" value="{{insurance.id}}">{{insurance.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select ng-model="model.specialty_disease_id" class="form-control" name="specialty_disease_id" convert-to-number>
+                        <option value="">{{'Procedure'| translate }}</option>
+                        <option ng-repeat="specialtyDiseasliList in specialtyDiseasliLists" value="{{specialtyDiseasliList.id}}">{{specialtyDiseasliList.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group doc-name">
+                    <input type="text" class="form-control" placeholder="Doctor Name" name="doctor" ng-model="model.doctor" ng-required="false">
+                </div>
+                <div class="form-group">
+                    <select ng-model="model.language_id" class="form-control" name="language_id" convert-to-number>
+                        <option value="">{{'Language'| translate }}</option>
+                        <option ng-repeat="languagesList in languagesLists" value="{{languagesList.id}}">{{languagesList.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select ng-model="model.gender_id" class="form-control" name="gender_id" convert-to-number>
+                        <option value="">{{'Gender'| translate }}</option>
+                        <option ng-repeat="genderList in genderLists" value="{{genderList.id}}">{{genderList.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-btn">
+                    <button class="btn btn-block" type="submit">{{'Find'| translate }}</button>
+                </div>
+            </form>
+            <div class="map-block">
+                <div map-lazy-load="https://maps.google.com/maps/api/js">
+                    <ng-map zoom="10" center="[33.862100, -84.687900]" class="map-height">
+                        <marker ng-repeat="mapPosition in mappositions" id='{{mapPosition.id}}' position="{{mapPosition.lat}}, {{mapPosition.lon}}" on-click="showDetail(mapPosition)" icon="assets/img/hospital-marker.png"></marker>
+                        <info-window id="doctor-info">
+                            <div ng-non-bindable="">
+                                <div class="dr-avatar"> <img class="img-responsive" ng-src="{{doctorInfo.avatar}}" alt="{{'Dr.'| translate }}{{doctorInfo.doctor_name}}"/> </div>
+                                <div class="dr-heading">
+                                	<h4>{{'Dr.'| translate }}{{doctorInfo.doctor_name}}</h4>
+                                	<div class="dr-rate"><input-stars max="5" icon-base="fa fa-fw" icon-empty="fa-star-o" icon-hover="hover" icon-full="fa-star" readonly="true" ng-model="doctorInfo.rating"></input-stars></div>
+                                	<div class="dr-location">
+                                        <div class="address1">{{doctorInfo.address1}}</div>
+                                        <div class="address2">{{doctorInfo.address2}}</div>
+                                    </div>
+                                </div>
+                                <a href="#/doctor/{{doctorInfo.username}}" class="btn btn-block btn-green btn-xs">{{'Book Online'| translate }}</a>
+                            </div>
+                        </info-window>
+                    </ng-map>
+                </div>
+          	</div>
+     	</div>
+  	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-responsive">
+                    <div class="search-result clearfix">
+                        <div class="search-result-header clearfix">
+                            <div class="col-md-9 pull-right">
+                                <div class="week-hender">
+                                    <ul class="search-week-ul list-inline text-center">
+                                        <li class="search-left-arrow"><a href="javascript:void(0)" ng-click="prevWeek()"> <i class="fa fa-angle-left fa-2x"></i></a></li>
+                                        <li>
+                                            <ul class="list-unstyled">
+                                                <li>{{today.day}}</li>
+                                                <li>{{today.date}}</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled">
+                                                <li>{{day2.day}}</li>
+                                                <li>{{day2.date}}</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled">
+                                                <li>{{day3.day}}</li>
+                                                <li>{{day3.date}}</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled">
+                                                <li>{{day4.day}}</li>
+                                                <li>{{day4.date}}</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled">
+                                                <li>{{day5.day}}</li>
+                                                <li>{{day5.date}}</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled">
+                                                <li>{{day6.day}}</li>
+                                                <li>{{day6.date}}</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled">
+                                                <li>{{day7.day}}</li>
+                                                <li>{{day7.date}}</li>
+                                            </ul>
+                                        </li>
+                                        <li class="search-right-arrow"><a href="javascript:void(0)" ng-click="nextWeek()"> <i class="fa fa-angle-right fa-2x"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-loading-div" id="search-loading-div">
+                            <div id="loading" class="loadAng">
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                        <div class="search-result-div" id="search-result-div">
+                            {{searchLists.length}}
+                            <div class="doctor-list clearfix" ng-repeat="doctorList in searchLists" ng-if="searchRecordShow">
+                                <div class="col-md-3 doctor-detail text-center">
+                                    <div class="doctor-profile-image">
+                                        <!--<a href="#/doctor/{{doctorList.data.User.data.username}}">-->
+                                            <img class="img-responsive" ng-src="{{doctorList.data.User.data.attachmentable.data.thumb.medium}}" alt="doctor"/>
+                                        <!--</a>-->
+                                    </div>
+                                    <div class="doctor-profile-details">
+                                        <!--<a href="#/doctor/{{doctorList.data.User.data.username}}">-->
+                                            <h3>{{doctorList.data.dr_title}} {{doctorList.data.first_name}} {{doctorList.data.last_name}}</h3>
+                                        <!--</a>-->
+                                        <p class="doctor-location">
+                                            {{doctorList.data.address}} <br/>
+                                            {{doctorList.data.postal_code}}
+                                            {{doctorList.data.city.data.name}}, 
+                                            {{doctorList.data.country.data.name}}
+                                            
+                                        </p>
+                                        <p class="doctor-rating">
+                                            <input-stars max="5" icon-base="fa fa-fw" icon-empty="fa-star" icon-hover="hover" icon-full="fa-star" readonly="true" ng-model="doctorList.starRating"></input-stars>
+                                        </p>
+                                        <a class="btn btn-green" href="#/doctor/{{doctorList.data.User.data.username}}">View Profile</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 doctor-booking-details doctor_{{doctorList.data.user_id}}_loadMore">
+                                    <ul class="search-week-ul list-inline text-center">
+                                        <li>
+                                            <ul class="list-unstyled" ui-if="!!doctorList[today.day].length">
+                                                <li class="hidden visible-xs detail-head">{{today.day}}</li>
+                                                <li ng-repeat="todaySlot in doctorList[today.day] track by $index">
+                                                    <span ng-show="todaySlot != '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{today.date}}/{{todaySlot}}" class="btn">{{todaySlot}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{today.date}}/{{todaySlot}}" class="btn">{{todaySlot}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-show="todaySlot == '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                           <a href="javascript:void(0)" class="btn">{{todaySlot}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="javascript:void(0)" class="btn">{{todaySlot}}</a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled" ui-if="!!doctorList[day2.day].length">
+                                                <li class="hidden visible-xs detail-head">{{day2.day}}</li>
+                                                <li ng-repeat="Day2 in doctorList[day2.day] track by $index">
+                                                    <span ng-show="Day2 != '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day2.date}}/{{Day2}}" class="btn">{{Day2}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day2.date}}/{{Day2}}" class="btn">{{Day2}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-show="Day2 == '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                           <a href="javascript:void(0)" class="btn">{{Day2}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="javascript:void(0)" class="btn">{{Day2}}</a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <ul class="list-unstyled" ui-if="!!doctorList[day3.day].length">
+                                                <li class="hidden visible-xs detail-head">{{day3.day}}</li>
+                                                <li ng-repeat="Day3 in doctorList[day3.day] track by $index">
+                                                    <span ng-show="Day3 != '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day3.date}}/{{Day3}}" class="btn">{{Day3}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day3.date}}/{{Day3}}" class="btn">{{Day3}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-show="Day3 == '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                           <a href="javascript:void(0)" class="btn">{{Day3}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="javascript:void(0)" class="btn">{{Day3}}</a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled" ui-if="!!doctorList[day4.day].length">
+                                                <li class="hidden visible-xs detail-head">{{day4.day}}</li>
+                                                <li ng-repeat="Day4 in doctorList[day4.day] track by $index">
+                                                    <span ng-show="Day4 != '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day4.date}}/{{Day4}}" class="btn">{{Day4}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day4.date}}/{{Day4}}" class="btn">{{Day4}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-show="Day4 == '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                           <a href="javascript:void(0)" class="btn">{{Day4}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="javascript:void(0)" class="btn">{{Day4}}</a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled" ui-if="!!doctorList[day5.day].length">
+                                                <li class="hidden visible-xs detail-head">{{day5.day}}</li>
+                                                <li ng-repeat="Day5 in doctorList[day5.day] track by $index">
+                                                    <span ng-show="Day5 != '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day5.date}}/{{Day5}}" class="btn">{{Day5}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day5.date}}/{{Day5}}" class="btn">{{Day5}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-show="Day5 == '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                           <a href="javascript:void(0)" class="btn">{{Day5}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="javascript:void(0)" class="btn">{{Day5}}</a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="list-unstyled" ui-if="!!doctorList[day6.day].length">
+                                                <li class="hidden visible-xs detail-head">{{day6.day}}</li>
+                                                <li ng-repeat="Day6 in doctorList[day6.day] track by $index">
+                                                    <span ng-show="Day6 != '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day6.date}}/{{Day6}}" class="btn">{{Day6}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day6.date}}/{{Day6}}" class="btn">{{Day6}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-show="Day6 == '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                           <a href="javascript:void(0)" class="btn">{{Day6}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="javascript:void(0)" class="btn">{{Day6}}</a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                         <li>
+                                            <ul class="list-unstyled" ui-if="!!doctorList[day7.day].length">
+                                                <li class="hidden visible-xs detail-head">{{day7.day}}</li>
+                                                <li ng-repeat="Day7 in doctorList[day7.day] track by $index">
+                                                    <span ng-show="Day7 != '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day7.date}}/{{Day7}}" class="btn">{{Day7}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="#/appointments/booking/{{doctorList.data.user_id}}/{{day7.date}}/{{Day7}}" class="btn">{{Day7}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-show="Day7 == '--'">
+                                                        <span ng-if="$index < appointmentLoadMore">
+                                                           <a href="javascript:void(0)" class="btn">{{Day7}}</a>
+                                                        </span>
+                                                        <span ng-if="$index >= appointmentLoadMore" class="hide showmore_{{doctorList.data.user_id}}">
+                                                            <a href="javascript:void(0)" class="btn">{{Day7}}</a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <div class="showlessmore" ng-if="doctorList[today.day].length > appointmentLoadMore || doctorList[day1.day].length > appointmentLoadMore || doctorList[day2.day].length > appointmentLoadMore || doctorList[day3.day].length > appointmentLoadMore || doctorList[day4.day].length > appointmentLoadMore || doctorList[day5.day].length > appointmentLoadMore || doctorList[day6.day].length > appointmentLoadMore || doctorList[day7.day].length > appointmentLoadMore">
+                                        <span class="showmore_btn_{{doctorList.data.user_id}} show">
+                                            <button ng-click="loadMore(doctorList.data.user_id)" class="btn btn-dk-blue">More&nbsp;<i class="fa fa-angle-down"></i></button>
+                                        </span>
+                                        <span class="showless_btn_{{doctorList.data.user_id}} hide">
+                                            <button ng-click="showLess(doctorList.data.user_id)" class="btn btn-red">Less&nbsp;<i class="fa fa-angle-up"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="!searchRecordShow" class="no-record-field">
+                                <p class="hor-space alert alert-danger">{{'No Doctor Found' |translate}}</p>
+                            </div>
+                        </div>
+
+                        <div class="paging col-md-12 text-center" ng-if="searchRecordShow">
+                            <paging
+                                    page="PaginateValues.current_page"
+                                    page-size="PaginateValues.per_page"
+                                    total="PaginateValues.total"
+                                    pg-href={{paginateUrl}}&page={page}
+                                    text-first="First"
+                                    text-last="Last"
+                                    text-next="&#xf105"
+                                    text-prev="&#xf104"
+                                    text-title-page="Page {page}"
+                                    text-title-first="First hover"
+                                    text-title-last="Last hover"
+                                    text-title-next="Next hover"
+                                    text-title-prev="Prev hover"
+                                    show-prev-next="true"
+                                    show-first-last="false"
+                                    ng-click="model.paginateRedirect()"
+                            >
+                            </paging>
+                        </div>
+                    </div>
+                </div>
+
+        		<!-- Start: Find Doctor -->
+                <div class="find-doctor">
+                    <h2>Find Doctors by...</h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="change-location city">
+                                <h4><span>{{'City'| translate }}</span></h4>
+                                <ul class="list-unstyled" ng-init="citiesliList=5" ng-scrollbars ng-scrollbars-config="scrollbarConfig">
+                                    <li ng-repeat="citiesliList in citiesliLists | limitTo:citiesliList track by $index" class="search-list-iteams">
+                                        <a href="javascript:void(0)" ng-click="model.pageRedirect('city_id=' + citiesliList.id)">{{citiesliList.name}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn-more" ng-click="$parent.citiesliList=citiesliLists.length" ng-if="citiesliList==5">More...</a>
+                                        <a class="btn-more" ng-click="$parent.citiesliList=5" ng-if="citiesliList!=5">Less</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="change-location specialty">
+                                <h4><span>{{'Specialty'| translate }}</span></h4>
+                                <ul class="list-unstyled" ng-init="specialtyliList=5" ng-scrollbars ng-scrollbars-config="scrollbarConfig">
+                                    <li ng-repeat="specialtyliList in specialtyliLists | limitTo:specialtyliList track by $index">
+                                        <a href="javascript:void(0)" ng-click="model.pageRedirect('specialty_id=' + specialtyliList.id)">{{specialtyliList.name}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn-more" ng-click="$parent.specialtyliList=specialtyliLists.length" ng-if="specialtyliList==5">More...</a>
+                                        <a class="btn-more" ng-click="$parent.specialtyliList=5" ng-if="specialtyliList!=5">Less</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="change-location insurance">
+                                <h4><span>{{'Languages'| translate }}</span></h4>
+                                <ul class="list-unstyled" ng-init="languageList=5" ng-scrollbars ng-scrollbars-config="scrollbarConfig">
+                                    <li ng-repeat="languageList in languagesLists | limitTo:languageList track by $index">
+                                        <a href="javascript:void(0)" ng-click="model.pageRedirect('language_id=' + languageList.id)">{{languageList.name}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn-more" ng-click="$parent.languageList=languageLists.length" ng-if="languageList==5">More...</a>
+                                        <a class="btn-more" ng-click="$parent.languageList=5" ng-if="languageList!=5">Less</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End: Find Doctor -->
+   			</div>
+		</div>
+ 	</div>
+    <!-- Start: Contact -->
+    <div class="contact-block">
+        <div class="container">
+            <div class="col-md-7 footer-logo">
+                <img src="assets/img/footer-logo.png" alt="logo" />
+                <p>{{'Need help booking online?' | translate }} {{$root.settings['site.contact_number']}}</p>
+            </div>
+            <div class="col-md-5 text-right">
+                <a class="btn btn-red" href="javascript:void(0);">{{$root.settings['site.contact_email']}}</a>
+            </div>
+        </div>
+    </div>
+    <!-- End: Contact -->
+</div>

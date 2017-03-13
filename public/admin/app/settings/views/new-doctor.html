@@ -1,0 +1,368 @@
+<div id="content" ng-controller="DoctorCtrl">
+	<!-- widget grid -->
+    <section id="widget-grid" class="col-xs-12 col-sm-2" widget-grid>
+
+    <!-- row -->
+    <div class="row">
+
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div jarvis-widget data-widget-color="blueLight" id="wid-id-0" data-widget-editbutton="false">
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <form class="dropzone" data-smart-dropzone="dropzoneConfig">
+                            <div class="dz-default dz-message"><span><span class="text-center"><span class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"> Upload <span class="font-xs">photo</span></span></span></span></span></div>
+                        </form>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+        <!-- WIDGET END -->
+
+    </div>
+
+    <!-- end row -->
+    </section>
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="col-xs-12 col-sm-10" widget-grid>
+
+        <div ng-if="alert.msg != ''" class="alert alert-{{alert.type}}"><span ng-bind-html="alert.msg"></span></div>
+    	<!-- row -->
+        <div class="row">
+
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div jarvis-widget id="basic-form-elements" data-widget-colorbutton="false" data-widget-editbutton="false"
+                     data-widget-custombutton="false">
+                <!-- widget options:
+                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-togglebutton="false"
+                data-widget-deletebutton="false"
+                data-widget-fullscreenbutton="false"
+                data-widget-custombutton="false"
+                data-widget-collapsed="true"
+                data-widget-sortable="false"
+
+                -->
+                    <header>
+
+                        <h2>Information of new doctor</h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            <form class="smart-form">
+
+                                <fieldset>
+
+                                    <section>
+                                        <div class="row">
+	                                        <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Name</label>
+		                                        <label class="input  {{labelClasses.name}}" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Name" ng-model="new_doctor.name">
+		                                        </label>
+	                                        </div>
+                                            <div class="col-xs-2 col-sm-1"></div>
+	                                        <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Email</label>
+		                                        <label class="input {{labelClasses.email}}" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Email"  ng-model="new_doctor.email">
+		                                        </label>
+	                                        </div>
+                                        </div>
+                                    </section>
+
+                                    <section>
+	                                    <div class="row">
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Gender</label>
+		                                        <label class="select {{labelClasses.gender}}" style="margin-left: 15px;margin-right: 15px;">
+                                                    <select name="mySelect"
+                                                            ng-options="gender.id as gender.name for gender in genders track by gender.id"
+                                                            ng-model="new_doctor.gender"></select>
+		                                        </label>
+		                                    </div>
+                                            <div class="col-xs-2 col-sm-1"></div>
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Phone</label>
+		                                        <label class="input {{labelClasses.phone}}" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Contact" ng-model="new_doctor.phone">
+		                                        </label>
+		                                    </div>
+                                        </div>
+                                    </section>
+
+                                    <section ng-repeat="item in educations">
+                                    	<div class="row" >
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Education</label>
+		                                        <label class="input" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Text" ng-model="item.val1">
+		                                        </label>
+		                                    </div>
+                                            <div class="col-xs-2 col-sm-1"></div>
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">University/Organization</label>
+		                                        <label class="input" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Text" ng-model="item.val2">
+		                                        </label>
+		                                    </div>
+                                            <div class="col-xs-2 col-sm-1" ng-if="!$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="removeRow(item, educations)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                            <div class="col-xs-2 col-sm-1" ng-if="$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="addRow(educations)">
+                                                        <i class="glyphicon glyphicon-plus">
+                                                        </i>
+                                                    </div>
+
+                                                    <div ng-if="educations.length > 1" class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, educations)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+		                                </div>
+                                    </section>
+
+                                    <section ng-repeat="item in affliations">
+                                    	<div class="row">
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Affiliation</label>
+		                                        <label class="input" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Text" ng-model="item.val1">
+		                                        </label>
+		                                    </div>
+                                            <div class="col-xs-2 col-sm-1" ng-if="!$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, affliations)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+
+                                            <div class="col-xs-2 col-sm-1" ng-if="$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="addRow(affliations)">
+                                                        <i class="glyphicon glyphicon-plus">
+                                                        </i>
+                                                    </div>
+
+                                                    <div ng-if="affliations.length > 1" class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, affliations)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+		                                </div>
+                                    </section>
+
+                                    <section ng-repeat="item in certificates">
+                                        <div class="row">
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Board Certifications</label>
+		                                        <label class="input" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Text" ng-model="item.val1">
+		                                        </label>
+		                                    </div>
+                                            <div class="col-xs-2 col-sm-1" ng-if="!$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="removeRow(item, certificates)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                            <div class="col-xs-2 col-sm-1" ng-if="$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="addRow(certificates)">
+                                                        <i class="glyphicon glyphicon-plus">
+                                                        </i>
+                                                    </div>
+
+                                                    <div ng-if="certificates.length > 1" class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, certificates)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+		                                </div>
+                                    </section>
+
+                                    <section ng-repeat="item in awards">
+                                        <div class="row">
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Awards and Publications</label>
+		                                        <label class="input" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Text" ng-model="item.val1">
+		                                        </label>
+		                                    </div>
+
+                                            <div class="col-xs-2 col-sm-1" ng-if="!$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="removeRow(item, awards)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+
+                                            <div class="col-xs-2 col-sm-1" ng-if="$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;"  ng-click="addRow(awards)">
+                                                        <i class="glyphicon glyphicon-plus">
+                                                        </i>
+                                                    </div>
+
+                                                    <div ng-if="awards.length > 1" class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, awards)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+		                                </div>
+                                    </section>
+
+                                    <section ng-repeat="item in doctorsLanguages">
+                                        <div class="row">
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Languages Spoken</label>
+                                                <label class="select" style="margin-left: 15px;margin-right: 15px;">
+                                                    <select name="mySelect"
+                                                            ng-options="language.id as language.name for language in languages track by language.id"
+                                                            ng-model="item.val1"></select>
+                                                </label>
+		                                    </div>
+
+                                            <div class="col-xs-2 col-sm-1" ng-if="!$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="removeRow(item, doctorsLanguages)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+
+                                            <div class="col-xs-2 col-sm-1" ng-if="$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="addRow(doctorsLanguages)">
+                                                        <i class="glyphicon glyphicon-plus">
+                                                        </i>
+                                                    </div>
+
+                                                    <div ng-if="doctorsLanguages.length > 1" class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, doctorsLanguages)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+		                                </div>
+                                    </section>
+
+                                    <section ng-repeat="item in doctorsProcedures">
+                                        <div class="row">
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Procedures</label>
+		                                        <label class="select" style="margin-left: 15px;margin-right: 15px;">
+                                                    <select name="mySelect"
+                                                            ng-options="procedure.id as procedure.name for procedure in procedures track by procedure.id"
+                                                            ng-model="item.val1"></select>
+		                                        </label>
+		                                    </div>
+                                            <div class="col-xs-2 col-sm-1" ng-if="!$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, doctorsProcedures)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                            <div class="col-xs-2 col-sm-1" ng-if="$last">
+                                                <center>
+                                                    <div class="btn btn-primary btn-circle" style="margin-top:25px;" ng-click="addRow(doctorsProcedures)">
+                                                        <i class="glyphicon glyphicon-plus">
+                                                        </i>
+                                                    </div>
+
+                                                    <div ng-if="doctorsProcedures.length > 1" class="btn btn-primary btn-circle" style="margin-top:25px; margin-left:10px;" ng-click="removeRow(item, doctorsProcedures)">
+                                                        <i class="glyphicon glyphicon-trash">
+                                                        </i>
+                                                    </div>
+                                                </center>
+                                            </div>
+		                                </div>
+                                    </section>
+
+                                    <section>
+                                        <div class="row">
+		                                    <div class="col-xs-10 col-sm-5">
+		                                        <label class="label" style="margin-left: 15px;margin-right: 15px;">Professional Statement</label>
+		                                        <label class="input {{labelClasses.professionalStatement}}" style="margin-left: 15px;margin-right: 15px;">
+		                                            <input type="text" placeholder="Text" ng-model="new_doctor.professionalStatement">
+		                                        </label>
+		                                    </div>
+		                                </div>
+                                    </section>
+
+                                </fieldset>
+
+                                <footer  data-ui-sref-active="active">
+                                	<div class="row">
+		                                <div class="col-xs-10 col-sm-5">
+		                                    <button type="submit" class="btn btn-primary" style="margin-right: 15px;" data-ui-sref="app.settings.doctors.appointment">
+		                                        Appointment Settings
+		                                    </button>
+		                                    <button type="submit" ng-click="submitForm()" class="btn btn-primary" style="margin-right: 15px;" ng-disabled="isNotValid()">
+		                                        Save
+		                                    </button>
+		                                    <button type="button" class="btn btn-default" style="margin-right: 15px;" onclick="window.history.back();">
+		                                        cancel
+		                                    </button>
+		                                </div>
+		                            </div>
+                                </footer>
+                            </form>
+                    </div>
+                    <!-- end widget content -->
+                </div>
+                <!-- end widget div -->
+            </div>
+            <!-- end widget -->
+            </article>
+        <!-- END COL -->
+        </div>
+    </section>
+</div>

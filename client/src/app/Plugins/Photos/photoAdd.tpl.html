@@ -1,0 +1,26 @@
+<section class="pad-63 upload-photo">
+    <div class="container">
+    	<div class="col-md-5 col-md-offset-3 border">	
+            <div class="page-head">
+                <h1>Upload on file select</h1>
+            </div>
+            <div class="form-content">
+                <div class="form-body">
+                    <div class="form-group">
+                        <button class="btn btn-green btn-animate btn-block" ngf-select="uploadFiles($files)" multiple   ngf-pattern="'.jpg,.png,.gif,.jpeg'">Select Files</button>
+                        <span class="error" class="text-danger help-block">{{'Allowed extensions: jpg, jpeg, gif, png'|translate}}</span>
+                    </div>
+                    <ul class="list-inline">
+                        <li ng-show="files">Files:</li>
+                        <li ng-repeat="f in files" style="font:smaller">
+                            {{f.name}}
+                        </li>
+                    </ul>
+                    <div class="progress" ng-show="progress >= 0">
+                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+                    </div>
+                </div>
+            </div>
+      	</div>
+    </div>
+</section>

@@ -1,0 +1,148 @@
+<div id="content" ng-controller="InviteUserCtrl">
+    <!-- widget grid -->
+    <section id="widget-grid" widget-grid>
+        <div class="row">
+            <div icon="table" class="col-xs-12 ng-isolate-scope">
+                <h1 class="page-title txt-color-blueDark">
+                    Users
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4" style="display:inline-block;text-align:center;">
+                <h5  style="margin:0px -13px;padding:13px 0px;background-color:#D3D3D3;">USER DETAILS</h5>
+                <h5>sandeep@noosyntech.com</h5>
+            </div>
+            <div class="col-xs-12 col-sm-4" style="display:inline-block;text-align:center;">
+                <h5  style="margin:0px -13px;padding:13px 0px;background-color:#D3D3D3;">ROLE</h5>
+                <h5>Admin</h5>
+            </div>
+            <div class="col-xs-12 col-sm-4" style="display:inline-block;text-align:center;">
+                <h5  style="margin:0px -13px;padding:13px 0px;background-color:#D3D3D3;">ACTIONS</h5>
+            </div>
+        </div>
+        <div class="row" style="margin-top:50px;">
+            <div class="col-xs-12" style="text-align:center;font-size:96px;">
+                <i class="fa fa-user"></i>
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-xs-12 col-sm-4 col-sm-push-4" style="text-align:center;font-size:24px;">
+                Invite your employees as users and assign suitable roles to them. Each role comes with certain privileges and restrictions.
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <article class="col-xs-12 col-sm-6 col-sm-push-3">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div jarvis-widget id="basic-form-elements" data-widget-colorbutton="false" data-widget-editbutton="false"
+                     data-widget-custombutton="false">
+                <!-- widget options:
+                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-togglebutton="false"
+                data-widget-deletebutton="false"
+                data-widget-fullscreenbutton="false"
+                data-widget-custombutton="false"
+                data-widget-collapsed="true"
+                data-widget-sortable="false"
+
+                -->
+                    <header>
+                        <h2>Invite User</h2>
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+
+
+                            <form class="smart-form">
+                                <header>
+                                    User Information
+                                </header>
+
+                                <div ng-if="alert.msg != ''" class="alert alert-{{alert.type}}"><span ng-bind-html="alert.msg"></span></div>
+
+                                <fieldset style="padding: 25px 28px 5px;">
+
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <label class="label" style="color:#f00;">Email</label>
+                                                <label class="input {{labelClasses.email}}">
+                                                    <input type="text" ng-model="new_user.email">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <label class="label" style="color:#f00;">Name</label>
+                                                <label class="input {{labelClasses.name}}">
+                                                    <input type="text" ng-model="new_user.name">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <label class="label" style="color:#f00;">Role</label>
+                                                <label class="select {{labelClasses.roleId}}">
+                                                    <select ng-model="new_user.roleId">
+                                                        <option value="0">Admin</option>
+                                                        <option value="1">Doctor</option>
+                                                        <option value="2">Nurse</option>
+                                                    </select><i></i>
+                                                </label>
+                                                <div class="note">
+                                                    <strong>Unrestricted access to all modules</strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6" data-ui-sref-active="active">
+                                                <a data-ui-sref="app.settings.newRole">
+                                                    <div class="btn btn-primary btn-circle" style="margin: 25px 10px 25px 25px;">
+                                                        <i class="glyphicon glyphicon-plus">
+                                                        </i>
+                                                    </div>
+                                                </a>
+                                                <div style="font-size:20px; display:inline-block;">Add new role</div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                </fieldset>
+
+                                <footer>
+                                    <button type="submit" class="btn btn-primary" style="float:left;" ng-click="submitForm()" ng-disabled="isNotValid()">
+                                        Send
+                                    </button>
+                                    <button type="button" class="btn btn-default" style="float:left;" onclick="window.history.back();">
+                                        Back
+                                    </button>
+                                </footer>
+                            </form>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- END COL -->
+        </div>
+    </section>
+</div>

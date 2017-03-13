@@ -1,0 +1,10 @@
+#AuthType Basic
+#AuthName "Password Protected Area"
+#AuthUserFile  /home/smysql/html/abs/.htpasswd
+#Require valid-user
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule    ^$    public/    [L]
+    RewriteRule    (.*) public/$1    [L]
+ </IfModule>
